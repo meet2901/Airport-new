@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Dashboard Management</title>
+    <style>
+      
+    </style>
+</head>
+<link rel="stylesheet" href="admin.css">
+<body>
+    <header class="header">
+        <div class="flg">
+            <h1>Flight Dashboard Management</h1>
+            <h5>Manage your upcoming fkights here</h5>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Insert Flight Form -->
+        <section class="form-section">
+            <div class="section-header">
+                <img src="images/airplane-take-off.png" alt="Insert Flight" width="50" height="50">
+                <h2>Insert Flights</h2>
+            </div>
+            <form id="insertForm" class="form">
+                <div class="form-group">
+                    <label for="flight_number">Flight No:</label>
+                    <input type="text" id="flight_number" required>
+                </div>
+                <div class="form-group">
+                    <label for="airline_name">Airline:</label>
+                    <input type="text" id="airline_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="departure_airport">From:</label>
+                    <input type="text" id="departure_airport" required>
+                </div>
+                <div class="form-group">
+                    <label for="arrival_airport">To:</label>
+                    <input type="text" id="arrival_airport" required>
+                </div>
+                <div class="form-group">
+                    <label for="departure_time">Departure:</label>
+                    <input type="datetime-local" id="departure_time" required>
+                </div>
+                <div class="form-group">
+                    <label for="arrival_time">Arrival:</label>
+                    <input type="datetime-local" id="arrival_time" required>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status:</label>
+                    <input type="text" id="status" required>
+                </div>
+                <div class="form-group">
+                    <label for="gate">Gate:</label>
+                    <input type="text" id="gate" required>
+                </div>
+                <div class="form-group">
+                    <label for="terminal">Terminal:</label>
+                    <input type="text" id="terminal" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" onclick="insertFlight()">Insert Flight</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Update Flight Form -->
+        <section class="form-section">
+            <div class="section-header">
+                <h2>Update Flight</h2>
+            </div>
+            <form id="updateForm" class="form">
+                <div class="form-group">
+                    <label for="update_flight_number">Flight No:</label>
+                    <input type="text" id="update_flight_number" required>
+                </div>
+                <div class="form-group">
+                    <label for="update_airline_name">Airline:</label>
+                    <input type="text" id="update_airline_name">
+                </div>
+                <div class="form-group">
+                    <label for="update_departure_airport">From:</label>
+                    <input type="text" id="update_departure_airport">
+                </div>
+                <div class="form-group">
+                    <label for="update_arrival_airport">To:</label>
+                    <input type="text" id="update_arrival_airport">
+                </div>
+                <div class="form-group">
+                    <label for="update_departure_time">Departure:</label>
+                    <input type="datetime-local" id="update_departure_time">
+                </div>
+                <div class="form-group">
+                    <label for="update_arrival_time">Arrival:</label>
+                    <input type="datetime-local" id="update_arrival_time">
+                </div>
+                <div class="form-group">
+                    <label for="update_status">Status:</label>
+                    <input type="text" id="update_status">
+                </div>
+                <div class="form-group">
+                    <label for="update_gate">Gate:</label>
+                    <input type="text" id="update_gate">
+                </div>
+                <div class="form-group">
+                    <label for="update_terminal">Terminal:</label>
+                    <input type="text" id="update_terminal">
+                </div>
+                <div class="form-actions">
+                    <button type="button" onclick="updateFlight()">Update Flight</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Delete Flight Form -->
+        <section class="form-section">
+            <div class="section-header">
+                <h2>Delete Flight</h2>
+            </div>
+            <form id="deleteForm" class="form">
+                <div class="form-group">
+                    <label for="delete_flight_number">Flight No:</label>
+                    <input type="text" id="delete_flight_number" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" onclick="deleteFlight()">Delete Flight</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Display Flights Button -->
+        <div class="display-button">
+            <a href="display.html"><button>Display</button></a>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Flight Dashboard Management. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function insertFlight() {
+            const formData = new FormData(document.getElementById('insertForm'));
+    
+            fetch('/insertFlight', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json',
+                },
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+    <script src="admin.js"></script>
+</body>
+</html>
